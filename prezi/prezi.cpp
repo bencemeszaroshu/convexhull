@@ -3,17 +3,17 @@
 
 #include "stdafx.h"
 #include "LineSegment.h"
-#include "Vector.h"
+#include "Point.h"
 #include <iostream>
 
 int main()
 {
-    LineSegment l1(Vector(0, 0), Vector(5, 5));
-    LineSegment l2(Vector(0, 5), Vector(5, 0));
+    LineSegment l1(Point(0, 0), Point(5, 5));
+    LineSegment l2(Point(0, 5), Point(5, 0));
 
     auto v = l1.Intersects(l2);
 
-    std::cout << v.x1 << " " << v.x2 << std::endl;
+    std::cout << v.x << " " << v.y << std::endl;
 
     return 0;
 }

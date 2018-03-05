@@ -1,11 +1,11 @@
 #pragma once
-#include "Vector.h"
+#include "Point.h"
 
 class Circle
 {
 public:
-    Circle(Vector center, double radious) : center(center), radius(radius) {};
-    Vector center;
+    Circle(Point center, double radious) : center(center), radius(radius) {};
+    Point center;
     double radius;
 };
 

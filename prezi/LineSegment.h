@@ -1,25 +1,25 @@
 #pragma once
-#include "Vector.h"
+#include "Point.h"
 #include <limits>
 
 class LineSegment
 {
 public:
-    LineSegment(Vector start, Vector end) : start(start), end(end) {};
-    Vector start;
-    Vector end;
-    Vector Intersects(LineSegment line)
+    LineSegment(Point start, Point end) : start(start), end(end) {};
+    Point start;
+    Point end;
+    Point Intersects(LineSegment line)
     {
-        Vector r = end - start;
-        Vector s = line.end - line.start;
-        Vector qp = line.start - start;
+        Point r = end - start;
+        Point s = line.end - line.start;
+        Point qp = line.start - start;
         double rxs = r.Cross(s);
         double qpxr = qp.Cross(r);
         bool collinear = rxs == 0 && qpxr == 0;
         bool parallel = rxs == 0 && qpxr != 0;
         if (collinear || parallel)
         {
-            return Vector(std::nan(""), std::nan(""));
+            return Point(std::nan(""), std::nan(""));
         }
         double qpxs = qp.Cross(s);
         double t = qpxs / rxs;
@@ -27,9 +27,9 @@ public:
         bool intersection = rxs != 0 && (0 <= t && t <= 1) && (0 <= u && u <= 1);
         if (intersection)
         {
-            return Vector(start + t*r);
+            return Point(start + t*r);
         }
-        return Vector(std::nan(""), std::nan(""));
+        return Point(std::nan(""), std::nan(""));
     }
 };
 
