@@ -10,7 +10,7 @@ public:
     double operator*(Vector y) { return x1 * y.x1 + x2 * y.x2; };
     friend Vector operator*(Vector y, double mult) { return Vector(y.x1 * mult, y.x2 * mult); };
     friend Vector operator*(double mult, Vector y) { return Vector(y.x1 * mult, y.x2 * mult); };
-    double Cross(Vector y) { return x1 * y.x1 - x2 * y.x2; };
+    double Cross(Vector y) { return x1 * y.x2 - x2 * y.x1; };
     bool operator==(Vector y) { return x1 == y.x1 && x2 == y.x2; };
 };
 
