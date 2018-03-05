@@ -1,11 +1,12 @@
+#pragma once
 #include "stdafx.h"
 #include "LineSegment.h"
 
-Point LineSegment::Intersects(LineSegment line)
+Point LineSegment::Intersects(LineSegment lineSegment)
 {
     Point r = end - start;
-    Point s = line.end - line.start;
-    Point qp = line.start - start;
+    Point s = lineSegment.end - lineSegment.start;
+    Point qp = lineSegment.start - start;
     double rxs = r.Cross(s);
     double qpxr = qp.Cross(r);
     bool collinear = rxs == 0 && qpxr == 0;
