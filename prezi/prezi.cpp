@@ -2,7 +2,8 @@
 //
 
 #include "stdafx.h"
-
+#include "Vector.h"
+#include <iostream>
 
 int main()
 {
