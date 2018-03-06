@@ -8,23 +8,11 @@ public:
     Point operator-(const Point& p) { return Point(x - p.x, y - p.y); }
     double operator*(const Point& p) { return x * p.x + y * p.y; }
     bool operator==(const Point& p) { return x == p.x && y == p.y; }
-    bool operator<(const Point& p)
-    {
-        if (y != p.y)
-        {
-            return y < p.y;
-        }
-        return x < p.x;
-    }
+    bool operator<(const Point& p);
     double Cross(const Point& p) { return x * p.y - y * p.x; }
-    double Distance(const Point& p)
-    {
-        return std::sqrt((x - p.x) * (x - p.x) + (y - p.y) * (y - p.y));
-    }
-    double DistanceSquare(const Point& p)
-    {
-        return (x - p.x) * (x - p.x) + (y - p.y) * (y - p.y);
-    }
+    int ClockWiseTurn(const Point& p1, const Point& p2);
+    double Distance(const Point& p);
+    double DistanceSquare(const Point& p);
     double Dot(const Point& p) { return x * p.x + y * p.y; }
     Point Scale(double s) { return Point(x * s, y * s); }
     friend Point operator*(const Point& p, double mult) { return Point(p.x * mult, p.y * mult); }
