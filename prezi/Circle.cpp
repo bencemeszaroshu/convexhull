@@ -25,8 +25,8 @@ std::vector<Point> Circle::Intersects(Circle circle)
     }
     std::vector<Point> intersections
     {
-        Point(p1.x + p2xh, p1.y + p2yh),
-        Point(p1.x - p2xh, p1.y - p2yh)
+        Point(p1.x + p2xh, p1.y - p2yh),
+        Point(p1.x - p2xh, p1.y + p2yh)
     };
     return intersections;
 }
