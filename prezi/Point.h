@@ -13,6 +13,7 @@ public:
     {
         return sqrt((x - p.x) * (x - p.x) + (y - p.y) * (y - p.y));
     }
+    double Dot(Point p) { return x * p.x + y * p.y; };
     Point Scale(double s) { return Point(x * s, y * s); };
     friend Point operator*(Point p, double mult) { return Point(p.x * mult, p.y * mult); };
     friend Point operator*(double mult, Point p) { return Point(p.x * mult, p.y * mult); };
