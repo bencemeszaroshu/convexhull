@@ -140,6 +140,7 @@
   <ItemGroup>
     <ClInclude Include="Circle.h" />
     <ClInclude Include="ConvexHull.h" />
+    <ClInclude Include="Intersections.h" />
     <ClInclude Include="LineSegment.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -148,6 +149,7 @@
   <ItemGroup>
     <ClCompile Include="Circle.cpp" />
     <ClCompile Include="ConvexHull.cpp" />
+    <ClCompile Include="Intersections.cpp" />
     <ClCompile Include="LineSegment.cpp" />
     <ClCompile Include="Point.cpp" />
     <ClCompile Include="prezi.cpp" />
