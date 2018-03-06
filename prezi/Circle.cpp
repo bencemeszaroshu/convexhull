@@ -17,12 +17,12 @@ std::vector<Point> Circle::Intersects(Circle circle)
         / (2 * distance);
     double height = std::sqrt(radius * radius - base * base);
     Point p1 = (circle.center - center).Scale(base / distance) + center;
-    if (distance == radius + circle.radius)
+    double p2xh = height * (circle.center.y - center.y) / distance;
+    double p2yh = height * (circle.center.x - center.x) / distance;
+    if (p2xh == 0 && p2yh == 0)
     {
         return std::vector<Point> { p1 };
     }
-    double p2xh = height * (circle.center.y - center.y) / distance;
-    double p2yh = height * (circle.center.x - center.x) / distance;
     std::vector<Point> intersections
     {
         Point(p1.x + p2xh, p1.y + p2yh),
