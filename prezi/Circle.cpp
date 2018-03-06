@@ -49,8 +49,8 @@ std::vector<Point> Circle::Intersects(LineSegment lineSegment)
         double t0 = -b / (2 * a);
         if (t0 >= 0 && t0 <= 0)
         {
-            Point p1 = lineSegment.start + d.Scale(t0);
-            intersections.push_back(p1);
+            Point p0 = lineSegment.start + d.Scale(t0);
+            intersections.push_back(p0);
             return intersections;
         }
     }
