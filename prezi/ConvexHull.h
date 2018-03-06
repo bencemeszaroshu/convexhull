@@ -4,7 +4,7 @@
 class ConvexHull
 {
 public:
-    ConvexHull(std::vector<Point> inputPoints)
+    ConvexHull(std::vector<Point>& inputPoints)
     {
         points = GrahamScan(inputPoints);
         area = CalcArea();
