@@ -2,7 +2,7 @@
 #include "stdafx.h"
 #include "LineSegment.h"
 
-Point LineSegment::Intersects(LineSegment lineSegment)
+Point LineSegment::Intersects(LineSegment& lineSegment)
 {
     Point r = end - start;
     Point s = lineSegment.end - lineSegment.start;
