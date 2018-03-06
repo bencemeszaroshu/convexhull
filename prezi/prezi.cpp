@@ -3,12 +3,13 @@
 
 #include "stdafx.h"
 #include "Circle.h"
+#include "ConvexHull.h"
 #include "LineSegment.h"
 #include "Point.h"
 #include <fstream>
 #include <iostream>
 
-void ProcessInput(std::istream& input, int K, std::vector<LineSegment>& lineSegments, 
+void ProcessInput(std::istream& input, unsigned int K, std::vector<LineSegment>& lineSegments, 
     std::vector<Circle>& circles);
 std::vector<Point> CalcIntersections(std::vector<LineSegment>& lineSegments,
     std::vector<Circle>& circles);
@@ -22,7 +23,7 @@ int main()
     {
         return 0;
     }
-    int K;
+    unsigned int K;
     testInput >> K;
     std::vector<LineSegment> lineSegments;
     lineSegments.reserve(K);
@@ -30,12 +31,11 @@ int main()
     circles.reserve(K);
     ProcessInput(testInput, K, lineSegments, circles);
     testInput.close();
-    auto intersections = CalcIntersections(lineSegments, circles);
-
-    int alma = 8;
+    std::vector<Point> intersections = CalcIntersections(lineSegments, circles);
+    ConvexHull convexHull(intersections);
 }
 
-void ProcessInput(std::istream& input, int K, std::vector<LineSegment>& lineSegments, std::vector<Circle>& circles)
+void ProcessInput(std::istream& input, unsigned int K, std::vector<LineSegment>& lineSegments, std::vector<Circle>& circles)
 {
     for (unsigned int i = 0; i < K; ++i)
     {
