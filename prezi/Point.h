@@ -1,5 +1,5 @@
 #pragma once
-#include <math.h>
+#include <cmath>
 class Point
 {
 public:
@@ -11,7 +11,7 @@ public:
     double Cross(Point p) { return x * p.y - y * p.x; };
     double Distance(Point p)
     {
-        return sqrt((x - p.x) * (x - p.x) + (y - p.y) * (y - p.y));
+        return std::sqrt((x - p.x) * (x - p.x) + (y - p.y) * (y - p.y));
     }
     double Dot(Point p) { return x * p.x + y * p.y; };
     Point Scale(double s) { return Point(x * s, y * s); };
