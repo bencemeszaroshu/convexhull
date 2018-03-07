@@ -1,5 +1,6 @@
 #pragma once
 #include <cmath>
+#include <functional>
 #include <iostream>
 class Point
 {
@@ -8,7 +9,7 @@ public:
     Point operator+(const Point& p) { return Point(x + p.x, y + p.y); }
     Point operator-(const Point& p) { return Point(x - p.x, y - p.y); }
     double operator*(const Point& p) { return x * p.x + y * p.y; }
-    bool operator==(const Point& p) { return x == p.x && y == p.y; }
+    bool operator==(const Point& p) const { return x == p.x && y == p.y; }
     bool operator<(const Point& p);
     double Cross(const Point& p) { return x * p.y - y * p.x; }
     int ClockWiseTurn(const Point& p1, const Point& p2);
@@ -24,5 +25,19 @@ public:
     }
     double x;
     double y;
+};
+
+// Note: Hash function to be able to store Points in unordered_set
+template <>
+struct std::hash<Point>
+{
+    std::size_t operator()(const Point& k) const
+    {
+        using std::size_t;
+        using std::hash;
+        using std::string;
+        return ((hash<double>()(k.x)
+            ^ hash<double>()(k.y) << 1)) >> 1;
+    }
 };
 
