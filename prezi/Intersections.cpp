@@ -9,8 +9,7 @@ std::vector<Point> Intersections::CalcIntersections(std::vector<LineSegment>& li
     int maxCirleLineSegmentIntersections = maxCircleIntersections;
     int maxIntersections = maxLineSegmentIntersections + maxCircleIntersections
         + maxCirleLineSegmentIntersections;
-    std::vector<Point> intersections;
-    intersections.reserve(maxIntersections);
+    std::unordered_set<Point> intersections;
     if (lineSegments.size() > 1)
     {
         for (unsigned int i = 0; i < lineSegments.size() - 1; ++i)
@@ -22,7 +21,7 @@ std::vector<Point> Intersections::CalcIntersections(std::vector<LineSegment>& li
                 {
                     continue;
                 }
-                intersections.push_back(hit);
+                intersections.insert(hit);
             }
         }
     }
@@ -33,7 +32,10 @@ std::vector<Point> Intersections::CalcIntersections(std::vector<LineSegment>& li
             for (unsigned int j = i + 1; j < circles.size(); ++j)
             {
                 auto hits = circles[i].Intersects(circles[j]);
-                intersections.insert(intersections.end(), hits.begin(), hits.end());
+                for (const auto& hit : hits)
+                {
+                    intersections.insert(hit);
+                }
             }
         }
     }
@@ -42,10 +44,17 @@ std::vector<Point> Intersections::CalcIntersections(std::vector<LineSegment>& li
         for (unsigned int j = 0; j < lineSegments.size(); ++j)
         {
             auto hits = circles[i].Intersects(lineSegments[j]);
-            intersections.insert(intersections.end(), hits.begin(), hits.end());
+            for (const auto& hit : hits)
+            {
+                intersections.insert(hit);
+            }
         }
     }
-    return intersections;
+    std::vector<Point> intersectionsCopy;
+    intersectionsCopy.reserve(intersections.size());
+    std::copy(intersections.begin(), intersections.end(),
+        std::back_inserter(intersectionsCopy));
+    return intersectionsCopy;
 }
 
 int Intersections::CalcBinomialCoefficent(int n, int k)

@@ -2,6 +2,8 @@
 #include "Circle.h"
 #include "LineSegment.h"
 #include "Point.h"
+#include <algorithm>
+#include <unordered_set>
 #include <vector>
 
 class Intersections
