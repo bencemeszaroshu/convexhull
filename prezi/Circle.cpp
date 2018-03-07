@@ -1,4 +1,3 @@
-#pragma once
 #include "stdafx.h"
 #include "Circle.h"
 #include <cmath>

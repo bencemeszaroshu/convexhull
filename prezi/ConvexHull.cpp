@@ -3,7 +3,7 @@
 #include <stack>
 #include <algorithm>
 
-std::vector<Point> ConvexHull::GrahamScan(std::vector<Point> input)
+std::vector<Point> ConvexHull::GrahamScan(std::vector<Point>& input)
 {
     std::stack<Point> convexHull;
     if (input.size() < 3)

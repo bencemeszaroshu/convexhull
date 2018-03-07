@@ -13,6 +13,6 @@ public:
     double area;
 private:
     double CalcArea();
-    std::vector<Point> GrahamScan(std::vector<Point> input);
+    std::vector<Point> GrahamScan(std::vector<Point>& input);
 };
 

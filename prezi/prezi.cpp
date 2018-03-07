@@ -13,8 +13,8 @@
 #include <iomanip>
 #include <iostream>
 
-void ProcessInput(std::istream& input, unsigned int K, std::vector<LineSegment>& lineSegments, 
-    std::vector<Circle>& circles);
+void ProcessInput(std::istream& input, unsigned int numberOfPoints, 
+    std::vector<LineSegment>& lineSegments, std::vector<Circle>& circles);
 void PrintOutput(std::ostream& output, Intersections& intersections, ConvexHull& convexHull);
 
 int main()
@@ -25,13 +25,13 @@ int main()
     {
         return 0;
     }
-    unsigned int K;
-    testInput >> K;
+    unsigned int numberOfPoints;
+    testInput >> numberOfPoints;
     std::vector<LineSegment> lineSegments;
-    lineSegments.reserve(K);
+    lineSegments.reserve(numberOfPoints);
     std::vector<Circle> circles;
-    circles.reserve(K);
-    ProcessInput(testInput, K, lineSegments, circles);
+    circles.reserve(numberOfPoints);
+    ProcessInput(testInput, numberOfPoints, lineSegments, circles);
     testInput.close();
     Intersections intersections(lineSegments, circles);
     ConvexHull convexHull(intersections.points);
@@ -41,9 +41,10 @@ int main()
     int alma = 56;
 }
 
-void ProcessInput(std::istream& input, unsigned int K, std::vector<LineSegment>& lineSegments, std::vector<Circle>& circles)
+void ProcessInput(std::istream& input, unsigned int numberOfPoints, 
+    std::vector<LineSegment>& lineSegments, std::vector<Circle>& circles)
 {
-    for (unsigned int i = 0; i < K; ++i)
+    for (unsigned int i = 0; i < numberOfPoints; ++i)
     {
         char type;
         input >> type;
@@ -68,7 +69,7 @@ void ProcessInput(std::istream& input, unsigned int K, std::vector<LineSegment>&
     }
 }
 
-void PrintOutput(std::ostream& output, Intersections & intersections, ConvexHull & convexHull)
+void PrintOutput(std::ostream& output, Intersections& intersections, ConvexHull& convexHull)
 {
     output << intersections.points.size() << "\n";
     std::copy(intersections.points.begin(), intersections.points.end(), 

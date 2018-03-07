@@ -1,7 +1,8 @@
 #include "stdafx.h"
 #include "Intersections.h"
 
-std::vector<Point> Intersections::CalcIntersections(std::vector<LineSegment>& lineSegments, std::vector<Circle>& circles)
+std::vector<Point> Intersections::CalcIntersections(std::vector<LineSegment>& lineSegments,
+    std::vector<Circle>& circles)
 {
     int maxLineSegmentIntersections = (lineSegments.size() * (lineSegments.size() + 1)) / 2;
     int maxCircleIntersections = 2 * CalcBinomialCoefficent(circles.size(), 2);
