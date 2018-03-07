@@ -13,7 +13,7 @@
 #include <iomanip>
 #include <iostream>
 
-void ProcessInput(std::istream& input, unsigned int numberOfPoints, 
+void ProcessInput(std::istream& input, unsigned int numberOfShapes,
     std::vector<LineSegment>& lineSegments, std::vector<Circle>& circles);
 void PrintOutput(std::ostream& output, Intersections& intersections, ConvexHull& convexHull);
 
@@ -25,13 +25,13 @@ int main()
     {
         return 0;
     }
-    unsigned int numberOfPoints;
-    testInput >> numberOfPoints;
+    unsigned int numberOfShapes;
+    testInput >> numberOfShapes;
     std::vector<LineSegment> lineSegments;
-    lineSegments.reserve(numberOfPoints);
+    lineSegments.reserve(numberOfShapes);
     std::vector<Circle> circles;
-    circles.reserve(numberOfPoints);
-    ProcessInput(testInput, numberOfPoints, lineSegments, circles);
+    circles.reserve(numberOfShapes);
+    ProcessInput(testInput, numberOfShapes, lineSegments, circles);
     testInput.close();
     Intersections intersections(lineSegments, circles);
     ConvexHull convexHull(intersections.points);
@@ -41,10 +41,10 @@ int main()
     int alma = 56;
 }
 
-void ProcessInput(std::istream& input, unsigned int numberOfPoints, 
+void ProcessInput(std::istream& input, unsigned int numberOfShapes, 
     std::vector<LineSegment>& lineSegments, std::vector<Circle>& circles)
 {
-    for (unsigned int i = 0; i < numberOfPoints; ++i)
+    for (unsigned int i = 0; i < numberOfShapes; ++i)
     {
         char type;
         input >> type;
