@@ -19,26 +19,18 @@ void PrintOutput(std::ostream& output, Intersections& intersections, ConvexHull&
 
 int main()
 {
-    std::ifstream testInput;
-    testInput.open("D:\\Dokumentumok2\\prezi_hazi\\prezi\\Debug\\testinput.txt");
-    if (!testInput.is_open())
-    {
-        return 0;
-    }
     unsigned int numberOfShapes;
-    testInput >> numberOfShapes;
+    std::cin >> numberOfShapes;
     std::vector<LineSegment> lineSegments;
     lineSegments.reserve(numberOfShapes);
     std::vector<Circle> circles;
     circles.reserve(numberOfShapes);
-    ProcessInput(testInput, numberOfShapes, lineSegments, circles);
-    testInput.close();
+    ProcessInput(std::cin, numberOfShapes, lineSegments, circles);
     Intersections intersections(lineSegments, circles);
     ConvexHull convexHull(intersections.points);
     std::cout << std::fixed;
     std::cout << std::setprecision(4);
     PrintOutput(std::cout, intersections, convexHull);
-    int alma = 56;
 }
 
 void ProcessInput(std::istream& input, unsigned int numberOfShapes, 
