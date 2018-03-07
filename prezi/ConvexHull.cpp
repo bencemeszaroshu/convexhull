@@ -57,6 +57,13 @@ std::vector<Point> ConvexHull::GrahamScan(std::vector<Point> input)
 
 double ConvexHull::CalcArea()
 {
-    return 1.0;
-    // TODO
+    double area = 0;
+    for (unsigned int i = 0; i < points.size() - 1; ++i)
+    {
+        area += points[i].x * points[i + 1].y - points[i + 1].x * points[i].y;
+    }
+    area +=
+        points[points.size() - 1].x * points[0].y - points[0].x * points[points.size() - 1].y;
+    area = std::abs(area) / 2.0;
+    return area;
 }
