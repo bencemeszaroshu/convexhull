@@ -8,7 +8,7 @@ ConvexHull::ConvexHull(std::vector<Point>& inputPoints)
     points = GrahamScan(inputPoints);
     area = CalcArea();
     // Note: By requirement the convex hull should be an empty
-    // set if the points of the convex hull are collinear
+    // set if the points are collinear
     bool pointsAreCollinear = area == 0;
     if (pointsAreCollinear)
     {
