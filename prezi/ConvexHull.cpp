@@ -5,6 +5,10 @@
 
 std::vector<Point> ConvexHull::GrahamScan(std::vector<Point>& input)
 {
+    if (input.size() < 2)
+    {
+        return std::vector<Point>();
+    }
     std::stack<Point> convexHull;
     if (input.size() < 3)
     {
@@ -57,6 +61,10 @@ std::vector<Point> ConvexHull::GrahamScan(std::vector<Point>& input)
 
 double ConvexHull::CalcArea()
 {
+    if (points.size() < 3)
+    {
+        return 0.0;
+    }
     double area = 0;
     for (unsigned int i = 0; i < points.size() - 1; ++i)
     {

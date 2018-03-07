@@ -11,24 +11,30 @@ std::vector<Point> Intersections::CalcIntersections(std::vector<LineSegment>& li
         + maxCirleLineSegmentIntersections;
     std::vector<Point> intersections;
     intersections.reserve(maxIntersections);
-    for (unsigned int i = 0; i < lineSegments.size() - 1; ++i)
+    if (lineSegments.size() > 1)
     {
-        for (unsigned int j = i + 1; j < lineSegments.size(); ++j)
+        for (unsigned int i = 0; i < lineSegments.size() - 1; ++i)
         {
-            Point hit = lineSegments[i].Intersects(lineSegments[j]);
-            if (std::isnan(hit.x))
+            for (unsigned int j = i + 1; j < lineSegments.size(); ++j)
             {
-                continue;
+                Point hit = lineSegments[i].Intersects(lineSegments[j]);
+                if (std::isnan(hit.x))
+                {
+                    continue;
+                }
+                intersections.push_back(hit);
             }
-            intersections.push_back(hit);
         }
     }
-    for (unsigned int i = 0; i < circles.size() - 1; ++i)
+    if (circles.size() > 1)
     {
-        for (unsigned int j = i + 1; j < circles.size(); ++j)
+        for (unsigned int i = 0; i < circles.size() - 1; ++i)
         {
-            auto hits = circles[i].Intersects(circles[j]);
-            intersections.insert(intersections.end(), hits.begin(), hits.end());
+            for (unsigned int j = i + 1; j < circles.size(); ++j)
+            {
+                auto hits = circles[i].Intersects(circles[j]);
+                intersections.insert(intersections.end(), hits.begin(), hits.end());
+            }
         }
     }
     for (unsigned int i = 0; i < circles.size(); ++i)
