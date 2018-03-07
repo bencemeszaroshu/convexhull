@@ -7,11 +7,15 @@
 #include "Intersections.h"
 #include "LineSegment.h"
 #include "Point.h"
+#include <algorithm>
+#include <iterator>
 #include <fstream>
+#include <iomanip>
 #include <iostream>
 
 void ProcessInput(std::istream& input, unsigned int K, std::vector<LineSegment>& lineSegments, 
     std::vector<Circle>& circles);
+void PrintOutput(std::ostream& output, Intersections& intersections, ConvexHull& convexHull);
 
 int main()
 {
@@ -31,6 +35,9 @@ int main()
     testInput.close();
     Intersections intersections(lineSegments, circles);
     ConvexHull convexHull(intersections.points);
+    std::cout << std::fixed;
+    std::cout << std::setprecision(4);
+    PrintOutput(std::cout, intersections, convexHull);
     int alma = 56;
 }
 
@@ -59,4 +66,15 @@ void ProcessInput(std::istream& input, unsigned int K, std::vector<LineSegment>&
             lineSegments.push_back(LineSegment(Point(x1, y1), Point(x2, y2)));
         }
     }
+}
+
+void PrintOutput(std::ostream& output, Intersections & intersections, ConvexHull & convexHull)
+{
+    output << intersections.points.size() << "\n";
+    std::copy(intersections.points.begin(), intersections.points.end(), 
+        std::ostream_iterator<Point>(output, "\n"));
+    output << convexHull.points.size() << "\n";
+    std::copy(convexHull.points.begin(), convexHull.points.end(),
+        std::ostream_iterator<Point>(output, "\n"));
+    output << convexHull.area << "\n";
 }
