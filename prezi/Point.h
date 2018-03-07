@@ -31,13 +31,10 @@ public:
 template <>
 struct std::hash<Point>
 {
-    std::size_t operator()(const Point& k) const
+    std::size_t operator()(const Point& p) const
     {
-        using std::size_t;
-        using std::hash;
-        using std::string;
-        return ((hash<double>()(k.x)
-            ^ hash<double>()(k.y) << 1)) >> 1;
+        return ((std::hash<double>()(p.x)
+            ^ std::hash<double>()(p.y) << 1)) >> 1;
     }
 };
 
