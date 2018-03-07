@@ -43,6 +43,7 @@ std::vector<Point> Circle::Intersects(LineSegment& lineSegment)
         return std::vector<Point>();
     }
     std::vector<Point> intersections;
+    intersections.reserve(2);
     if (discriminant == 0)
     {
         double t0 = -b / (2 * a);
