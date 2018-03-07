@@ -1,5 +1,6 @@
 #pragma once
 #include <cmath>
+#include <iostream>
 class Point
 {
 public:
@@ -17,6 +18,10 @@ public:
     Point Scale(double s) { return Point(x * s, y * s); }
     friend Point operator*(const Point& p, double mult) { return Point(p.x * mult, p.y * mult); }
     friend Point operator*(double mult, const Point& p) { return Point(p.x * mult, p.y * mult); }
+    friend std::ostream& operator<<(std::ostream& os, const Point& p)
+    {
+        return os << p.x << " " << p.y;
+    }
     double x;
     double y;
 };
