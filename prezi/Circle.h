@@ -7,8 +7,8 @@ class Circle
 {
 public:
     Circle(Point center, double radius) : center(center), radius(radius) {};
-    std::vector<Point> Intersects(Circle& circle);
-    std::vector<Point> Intersects(LineSegment& lineSegment);
+    std::vector<Point> Intersects(const Circle& circle) const;
+    std::vector<Point> Intersects(const LineSegment& lineSegment) const;
     Point center;
     double radius;
 };

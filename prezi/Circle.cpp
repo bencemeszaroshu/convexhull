@@ -2,7 +2,7 @@
 #include "Circle.h"
 #include <cmath>
 
-std::vector<Point> Circle::Intersects(Circle& circle)
+std::vector<Point> Circle::Intersects(const Circle& circle) const
 {
     double distance = center.Distance(circle.center);
     bool separateCircles = distance > (radius + circle.radius);
@@ -30,7 +30,7 @@ std::vector<Point> Circle::Intersects(Circle& circle)
     return intersections;
 }
 
-std::vector<Point> Circle::Intersects(LineSegment& lineSegment)
+std::vector<Point> Circle::Intersects(const LineSegment& lineSegment) const
 {
     Point d = lineSegment.end - lineSegment.start;
     Point f = lineSegment.start - center;
