@@ -6,7 +6,7 @@ class LineSegment
 {
 public:
     LineSegment(Point start, Point end) : start(start), end(end) {};
-    Point Intersects(LineSegment& lineSegment);
+    Point Intersects(const LineSegment& lineSegment) const;
     Point start;
     Point end;
 };
