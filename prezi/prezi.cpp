@@ -17,20 +17,44 @@ void ProcessInput(std::istream& input, unsigned int numberOfShapes,
     std::vector<LineSegment>& lineSegments, std::vector<Circle>& circles);
 void PrintOutput(std::ostream& output, Intersections& intersections, ConvexHull& convexHull);
 
-int main()
+int main(int argc, char* argv[])
 {
-    unsigned int numberOfShapes;
-    std::cin >> numberOfShapes;
+    if (argc < 3)
+    {
+        std::cout << std::endl << "Usage: prezi.exe <INPUTFILE> <OUTPUTFILE>" << std::endl;
+        return 1;
+    }
     std::vector<LineSegment> lineSegments;
-    lineSegments.reserve(numberOfShapes);
     std::vector<Circle> circles;
-    circles.reserve(numberOfShapes);
-    ProcessInput(std::cin, numberOfShapes, lineSegments, circles);
+    std::ifstream inputFile(argv[1]);
+    if (inputFile.is_open())
+    {
+        unsigned int numberOfShapes;
+        inputFile >> numberOfShapes;
+        lineSegments.reserve(numberOfShapes);
+        circles.reserve(numberOfShapes);
+        ProcessInput(inputFile, numberOfShapes, lineSegments, circles);
+    }
+    else
+    {
+        std::cout << std::endl << "Couldn't open input file" << std::endl;
+        return 1;
+    }
     Intersections intersections(lineSegments, circles);
     ConvexHull convexHull(intersections.points);
-    std::cout << std::fixed;
-    std::cout << std::setprecision(4);
-    PrintOutput(std::cout, intersections, convexHull);
+    std::ofstream resultFile(argv[2]);
+    if (resultFile.is_open())
+    {
+        resultFile << std::fixed;
+        resultFile << std::setprecision(4);
+        PrintOutput(resultFile, intersections, convexHull);
+    }
+    else
+    {
+        std::cout << std::endl << "Couldn't open output file" << std::endl;
+        return 1;
+    }
+    return 0;
 }
 
 void ProcessInput(std::istream& input, unsigned int numberOfShapes, 
