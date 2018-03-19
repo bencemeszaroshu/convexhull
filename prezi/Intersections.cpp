@@ -4,11 +4,6 @@
 std::vector<Point> Intersections::CalcIntersections(const std::vector<LineSegment>& lineSegments,
     const std::vector<Circle>& circles)
 {
-    int maxLineSegmentIntersections = (lineSegments.size() * (lineSegments.size() + 1)) / 2;
-    int maxCircleIntersections = 2 * CalcBinomialCoefficent(circles.size(), 2);
-    int maxCirleLineSegmentIntersections = maxCircleIntersections;
-    int maxIntersections = maxLineSegmentIntersections + maxCircleIntersections
-        + maxCirleLineSegmentIntersections;
     std::unordered_set<Point> intersections;
     if (lineSegments.size() > 1)
     {
