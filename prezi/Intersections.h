@@ -17,6 +17,5 @@ public:
 private:
     std::vector<Point> CalcIntersections(const std::vector<LineSegment>& lineSegments,
         const std::vector<Circle>& circles);
-    int CalcBinomialCoefficent(int n, int k);
 };
 
