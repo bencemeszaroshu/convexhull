@@ -1,7 +1,7 @@
 Convexhull
 ===========
 
-Calculates the intersecting points of line segments and circles. Calculates the convex hull of these intersecting points and the area of the convex hull. If all intersection points are collinear, than the convex hull is an empty set by requirment.
+Calculates the intersecting points of line segments and circles. Calculates the convex hull of these intersecting points and the area of the convex hull. If all intersection points are collinear, then the convex hull is an empty set by requirment.
 
 
 Usage
